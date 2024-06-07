@@ -24,9 +24,9 @@
     <div class="row ">
         <div class="col-lg-12">
 
-            {!! '<b>Ahihi</b>' !!}
+            {!! '<b>Chart</b>' !!}
             <br>
-            {{ '<b>Ahihi</b>' }}
+            {!! '<b>View products</b>' !!}
 
             <div id="myChart" style="width:100%; max-width:600px; height:500px;">
 
