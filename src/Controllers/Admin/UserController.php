@@ -3,6 +3,7 @@
 namespace Ductong\XuongOop\Controllers\Admin;
 
 use Ductong\XuongOop\Commons\Controller;
+use Ductong\XuongOop\Commons\Helper;
 use Ductong\XuongOop\Models\User;
 use Rakit\Validation\Validator;
 
@@ -62,7 +63,7 @@ class UserController extends Controller
                 if (move_uploaded_file($from, PATH_ROOT . $to)) {
                     $data['avatar'] = $to;
                 } else {
-                    $_SESSION['errors']['avatar'] = 'Upload Không thành công';
+                    $_SESSION['errors']['avatar'] = 'Upload không thành công';
 
                     header('Location: ' . url('admin/users/create'));
                     exit;
@@ -154,7 +155,7 @@ class UserController extends Controller
             $_SESSION['status'] = true;
             $_SESSION['msg'] = 'Thao tác thành công';
 
-            header('Location: ' . url("admin/users/{$user['id']}/edit"));
+            header('Location: ' . url("admin/users"));
             exit;
         }
     }

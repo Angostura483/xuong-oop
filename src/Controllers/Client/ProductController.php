@@ -15,7 +15,11 @@ class ProductController extends Controller
     }
     
     public function index() {
-        echo __CLASS__ . '@' . __FUNCTION__;
+        [$products, $totalPage] = $this->product->paginate($_GET['page'] ?? 1);
+        $this->renderViewClient('product', [
+            'products' => $products,
+            'totalPage' => $totalPage
+        ]);
     }
 
     public function detail($id) {

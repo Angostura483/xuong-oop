@@ -124,7 +124,9 @@
                             <div class="profile_info_details">
                                 <a href="#">My Profile </a>
                                 <a href="#">Settings</a>
-                                <a href="#">Log Out </a>
+                                @if (isset($_SESSION['user']))
+                                    <a href="{{ url('logout') }}">Log Out </a>
+                                @endif
                             </div>
                         </div>
                     </div>

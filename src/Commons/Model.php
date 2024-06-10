@@ -37,35 +37,35 @@ class Model
     public function all()
     {
         return $this->queryBuilder
-        ->select('*')
-        ->from($this->tableName)
-        ->orderBy('id', 'desc')
-        ->fetchAllAssociative();
+            ->select('*')
+            ->from($this->tableName)
+            ->orderBy('id', 'desc')
+            ->fetchAllAssociative();
     }
 
     public function count()
     {
         return $this->queryBuilder
-        ->select("COUNT(*) as $this->tableName")
-        ->from($this->tableName)
-        ->fetchOne();
+            ->select("COUNT(*) as $this->tableName")
+            ->from($this->tableName)
+            ->fetchOne();
     }
 
-    public function paginate($page = 1, $perPage = 5)
+    public function paginate($page = 1, $perPage = 6)
     {
-        $queryBuilder = clone($this->queryBuilder);
+        $queryBuilder = clone ($this->queryBuilder);
 
         $totalPage = ceil($this->count() / $perPage);
 
         $offset = $perPage * ($page - 1);
 
         $data = $queryBuilder
-        ->select('*')
-        ->from($this->tableName)
-        ->setFirstResult($offset)
-        ->setMaxResults($perPage)
-        ->orderBy('id', 'desc')
-        ->fetchAllAssociative();
+            ->select('*')
+            ->from($this->tableName)
+            ->setFirstResult($offset)
+            ->setMaxResults($perPage)
+            ->orderBy('id', 'desc')
+            ->fetchAllAssociative();
 
         return [$data, $totalPage];
     }
@@ -86,9 +86,9 @@ class Model
             $query = $this->queryBuilder->insert($this->tableName);
 
             $index = 0;
-            foreach($data as $key => $value) {
+            foreach ($data as $key => $value) {
                 $query->setValue($key, '?')->setParameter($index, $value);
-                
+
                 ++$index;
             }
 
@@ -96,7 +96,7 @@ class Model
 
             return true;
         }
-        
+
         return false;
     }
 
@@ -106,7 +106,7 @@ class Model
             $query = $this->queryBuilder->update($this->tableName);
 
             $index = 0;
-            foreach($data as $key => $value) {
+            foreach ($data as $key => $value) {
                 $query->set($key, '?')->setParameter($index, $value);
 
                 ++$index;
@@ -118,12 +118,12 @@ class Model
 
             return true;
         }
-        
+
         return false;
     }
 
     public function delete($id)
-    {        
+    {
         return $this->queryBuilder
             ->delete($this->tableName)
             ->where('id = ?')

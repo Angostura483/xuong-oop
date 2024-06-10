@@ -39,7 +39,7 @@ class LoginController extends Controller
                 unset($_SESSION['cart']);
 
                 if ($user['type'] == 'admin') {
-                    header('Location: ' . url('admin/') );
+                    header('Location: ' . url() );
                     exit;
                 }
 
